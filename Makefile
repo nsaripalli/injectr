@@ -4,7 +4,7 @@ R := R
 
 all: document build check
 
-build: document
+build:
 	$(R) CMD build .
 
 check: build
