@@ -1,12 +1,14 @@
+R := R
+
 .PHONY: all build check document test
 
 all: document build check
 
 build: document
-	R CMD build .
+	$(R) CMD build .
 
 check: build
-	R CMD check injectr*tar.gz
+	$(R) CMD check injectr*tar.gz
 
 clean:
 	-rm -f injectr*tar.gz
@@ -14,11 +16,11 @@ clean:
 	-rm -fr src/*.{o,so}
 
 document: clean
-	Rscript -e 'devtools::document()'
-	Rscript -e 'rmarkdown::render("README.Rmd")'
+	$(R) --no-echo -e 'devtools::document()'
+	$(R) --no-echo -e 'rmarkdown::render("README.Rmd")'
 
 test:
-	Rscript -e 'devtools::test()'
+	$(R) --no-echo -e 'devtools::test()'
 
 install: clean
-	R CMD INSTALL .
+	$(R) CMD INSTALL .
