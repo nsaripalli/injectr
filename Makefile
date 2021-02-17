@@ -19,7 +19,7 @@ document: clean install-devtools install-rmarkdown
 	$(R) -s -e 'devtools::document()'
 	$(R) -s -e 'rmarkdown::render("README.Rmd")'
 
-test:
+test: install-devtools
 	$(R) -s -e 'devtools::test()'
 
 install: clean
