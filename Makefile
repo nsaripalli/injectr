@@ -16,17 +16,17 @@ clean:
 	-rm -fr src/*.{o,so}
 
 document: clean install-devtools install-rmarkdown
-	$(R) --no-echo -e 'devtools::document()'
-	$(R) --no-echo -e 'rmarkdown::render("README.Rmd")'
+	$(R) -s -e 'devtools::document()'
+	$(R) -s -e 'rmarkdown::render("README.Rmd")'
 
 test:
-	$(R) --no-echo -e 'devtools::test()'
+	$(R) -s -e 'devtools::test()'
 
 install: clean
 	$(R) CMD INSTALL .
 
 install-devtools:
-	$(R) --no-echo -e "if (!require('devtools')) install.packages('devtools')"
+	$(R) -s -e "if (!require('devtools')) install.packages('devtools')"
 	
 install-rmarkdown:
-		$(R) --no-echo -e "if (!require('rmarkdown')) install.packages('rmarkdown')"
+	$(R) -s -e "if (!require('rmarkdown')) install.packages('rmarkdown')"
